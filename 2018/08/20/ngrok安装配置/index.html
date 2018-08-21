@@ -7,18 +7,18 @@
   
   <title>ngrok安装配置 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="#####安装git和Golang(ubuntu\centos)    apt-get install build-essential golang mercurial git    yum install build-essential golang mercurial git #####下载ngrok源码到本地  git clone https://github.com/tutumcloud/">
+  <meta name="description" content="安装git和Golang(ubuntu\centos)12apt-get install build-essential golang mercurial gityum install build-essential golang mercurial git #####下载ngrok源码到本地git clone https://github.com/tutumcloud/ngrok.git ngr">
 <meta name="keywords" content="服务器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ngrok安装配置">
 <meta property="og:url" content="http://yoursite.com/2018/08/20/ngrok安装配置/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="#####安装git和Golang(ubuntu\centos)    apt-get install build-essential golang mercurial git    yum install build-essential golang mercurial git #####下载ngrok源码到本地  git clone https://github.com/tutumcloud/">
+<meta property="og:description" content="安装git和Golang(ubuntu\centos)12apt-get install build-essential golang mercurial gityum install build-essential golang mercurial git #####下载ngrok源码到本地git clone https://github.com/tutumcloud/ngrok.git ngr">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-20T13:33:00.661Z">
+<meta property="og:updated_time" content="2018-08-21T01:20:09.721Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ngrok安装配置">
-<meta name="twitter:description" content="#####安装git和Golang(ubuntu\centos)    apt-get install build-essential golang mercurial git    yum install build-essential golang mercurial git #####下载ngrok源码到本地  git clone https://github.com/tutumcloud/">
+<meta name="twitter:description" content="安装git和Golang(ubuntu\centos)12apt-get install build-essential golang mercurial gityum install build-essential golang mercurial git #####下载ngrok源码到本地git clone https://github.com/tutumcloud/ngrok.git ngr">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -87,101 +87,43 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#####安装git和Golang(ubuntu\centos)<br>    apt-get install build-essential golang mercurial git<br>    yum install build-essential golang mercurial git</p>
-<p>#####下载ngrok源码到本地</p>
-<blockquote>
-<p>git clone <a href="https://github.com/tutumcloud/ngrok.git" target="_blank" rel="noopener">https://github.com/tutumcloud/ngrok.git</a> ngrok</p>
-</blockquote>
+        <h5 id="安装git和Golang-ubuntu-centos"><a href="#安装git和Golang-ubuntu-centos" class="headerlink" title="安装git和Golang(ubuntu\centos)"></a>安装git和Golang(ubuntu\centos)</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get install build-essential golang mercurial git</span><br><span class="line">yum install build-essential golang mercurial git</span><br></pre></td></tr></table></figure>
+<p>#####下载ngrok源码到本地<br>git clone <a href="https://github.com/tutumcloud/ngrok.git" target="_blank" rel="noopener">https://github.com/tutumcloud/ngrok.git</a> ngrok</p>
 <hr>
-<p>#####生成自签名证书</p>
-<blockquote>
-<p>使用ngrok.com官方服务时，我们使用的是官方的SSL证书。自建ngrokd服务，如果不想买SSL证书，我们需要生成自己的自签名证书，并编译一个携带该证书的ngrok客户端。<br>证书生成过程需要一个NGROK_BASE_DOMAIN。 以ngrok官方随机生成的地址xxx.ngrok.com为例，其NGROK_BASE_DOMAIN就是“ngrok.com”，如果你要提供服务的地址为“example.ngrok.xxx.com”，那NGROK_BASE_DOMAIN就应该 是“ngrok.xxx.com”。本次测试，由于没有多余的域名，我替换成自己的二级域名“<a href="http://www.guojiangliu.com”" target="_blank" rel="noopener">www.guojiangliu.com”</a></p>
-</blockquote>
-<pre><code>&gt;&gt;&gt;&gt; 生成自签名证书脚本命令
-
-cd ngrok
-
-NGROK_DOMAIN=&quot;www.guojiangliu.com&quot;
-
-openssl genrsa -out base.key 2048
-
-openssl req -new -x509 -nodes -key base.key -days 10000 -subj &quot;/CN=$NGROK_DOMAIN&quot; -out base.pem
-
-openssl genrsa -out server.key 2048
-
-openssl req -new -key server.key -subj &quot;/CN=$NGROK_DOMAIN&quot; -out server.csr
-
-openssl x509 -req -in server.csr -CA base.pem -CAkey base.key -CAcreateserial -days 10000 -out server.crt
-</code></pre><blockquote>
-</blockquote>
+<h5 id="生成自签名证书"><a href="#生成自签名证书" class="headerlink" title="生成自签名证书"></a>生成自签名证书</h5><p>使用ngrok.com官方服务时，我们使用的是官方的SSL证书。自建ngrokd服务，如果不想买SSL证书，我们需要生成自己的自签名证书，并编译一个携带该证书的ngrok客户端。<br>证书生成过程需要一个NGROK_BASE_DOMAIN。 以ngrok官方随机生成的地址xxx.ngrok.com为例，其NGROK_BASE_DOMAIN就是“ngrok.com”，如果你要提供服务的地址为“example.ngrok.xxx.com”，那NGROK_BASE_DOMAIN就应该 是“ngrok.xxx.com”。本次测试，由于没有多余的域名，我替换成自己的二级域名“<a href="http://www.guojiangliu.com”" target="_blank" rel="noopener">www.guojiangliu.com”</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;&gt; 生成自签名证书脚本命令</span><br><span class="line">cd ngrok</span><br><span class="line">NGROK_DOMAIN=&quot;www.guojiangliu.com&quot;</span><br><span class="line">openssl genrsa -out base.key 2048</span><br><span class="line">openssl req -new -x509 -nodes -key base.key -days 10000 -subj &quot;/CN=$NGROK_DOMAIN&quot; -out base.pem</span><br><span class="line">openssl genrsa -out server.key 2048</span><br><span class="line">openssl req -new -key server.key -subj &quot;/CN=$NGROK_DOMAIN&quot; -out server.csr</span><br><span class="line">openssl x509 -req -in server.csr -CA base.pem -CAkey base.key -CAcreateserial -days 10000 -out server.crt</span><br></pre></td></tr></table></figure></p>
 <hr>
-<p>#####替换生成的自签名证书</p>
-<pre><code>cp base.pem assets/client/tls/ngrokroot.crt
-</code></pre><p>#####编译</p>
-<pre><code>make release-server release-client
+<h5 id="替换生成的自签名证书"><a href="#替换生成的自签名证书" class="headerlink" title="替换生成的自签名证书"></a>替换生成的自签名证书</h5><pre><code>cp base.pem assets/client/tls/ngrokroot.crt
+</code></pre><h5 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h5><pre><code>make release-server release-client
 </code></pre><blockquote>
-</blockquote>
-<blockquote>
 <p>成功后会在bin目录下生成ngrok、ngrokd两个文件，ngrokd即为服务端程序</p>
 </blockquote>
 <hr>
-<p>#####编译客户端</p>
-<blockquote>
+<h5 id="编译客户端"><a href="#编译客户端" class="headerlink" title="编译客户端"></a>编译客户端</h5><ul>
+<li>Windows客户端</li>
+</ul>
+<p>GOOS=windows GOARCH=amd64 make release-client</p>
 <ul>
-<li>Windows客户端<br>GOOS=windows GOARCH=amd64 make release-client</li>
-<li>Mac客户端<br>GOOS=darwin GOARCH=amd64 make release-client<blockquote>
+<li>Mac客户端</li>
+</ul>
+<p>GOOS=darwin GOARCH=amd64 make release-client</p>
 <p>成功后会在bin目录下生成对应的系统文件夹，将对应的执行文件下载到本地</p>
-</blockquote>
-</li>
-</ul>
-</blockquote>
 <hr>
-<p>#####客户端设置</p>
-<p>######同级目录下新建配置文件ngrok.cfg<br>    server_addr: “<a href="http://www.guojiangliu.com&quot;" target="_blank" rel="noopener">www.guojiangliu.com&quot;</a><br>    trust_host_root_certs: false</p>
-<p>######同级目录新建启动脚本startup.bat<br>    @echo on<br>    cd %cd%</p>
-<pre><code>#ngrok -proto=tcp 22
-#ngrok start web
-ngrok -config=ngrok.cfg -log=ngrok.log -subdomain=yjc 8080
-</code></pre><blockquote>
+<h5 id="客户端设置"><a href="#客户端设置" class="headerlink" title="客户端设置"></a>客户端设置</h5><h6 id="同级目录下新建配置文件ngrok-cfg"><a href="#同级目录下新建配置文件ngrok-cfg" class="headerlink" title="同级目录下新建配置文件ngrok.cfg"></a>同级目录下新建配置文件ngrok.cfg</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">server_addr: &quot;www.guojiangliu.com&quot;</span><br><span class="line">trust_host_root_certs: false</span><br></pre></td></tr></table></figure>
+<h6 id="同级目录新建启动脚本startup-bat"><a href="#同级目录新建启动脚本startup-bat" class="headerlink" title="同级目录新建启动脚本startup.bat"></a>同级目录新建启动脚本startup.bat</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@echo on</span><br><span class="line">cd %cd%</span><br><span class="line">#ngrok -proto=tcp 22</span><br><span class="line">#ngrok start web</span><br><span class="line">ngrok -config=ngrok.cfg -log=ngrok.log -subdomain=yjc 8080</span><br></pre></td></tr></table></figure>
 <p>其中，-config指向配置文件，-log存放日志文件位置，-subdomain为自定义的域名前缀。8080为端口号</p>
-</blockquote>
 <hr>
-<p>#####设置为系统程序，并后台运行</p>
+<h5 id="设置为系统程序，并后台运行"><a href="#设置为系统程序，并后台运行" class="headerlink" title="设置为系统程序，并后台运行"></a>设置为系统程序，并后台运行</h5><p>服务器在运行ngrok时，如果关闭会话窗口，会导致服务中断，很显然这不是我们想要的结果，我们需要服务不断的在后台运行，当需要的时候在停止。</p>
+<p>在/etc/systemd/system/目录下创建服务ngrok.service，内容为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=ngrok</span><br><span class="line">After=network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">ExecStart=/myweb/ngrok/bin/ngrokd -tlsKey=/myweb/ngrok/server.key -tlsCrt=/myweb/ngrok/server.crt -domain=&quot;weixin.yangjiace.xyz&quot; -httpAddr=&quot;:80&quot; -httpsAddr=&quot;:443&quot;</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;&gt;直接启动命令</span><br><span class="line">./bin/ngrokd -tlsKey=server.key -tlsCrt=server.crt -domain=&quot;www.guojiangliu.com&quot; -httpAddr=&quot;:80&quot; -httpsAddr=&quot;:443&quot;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h6 id="客户端连接不上服务端问题"><a href="#客户端连接不上服务端问题" class="headerlink" title="客户端连接不上服务端问题"></a>客户端连接不上服务端问题</h6><p>ngrokd存在两种端口需要进行校验：</p>
 <blockquote>
-<p>服务器在运行ngrok时，如果关闭会话窗口，会导致服务中断，很显然这不是我们想要的结果，我们需要服务不断的在后台运行，当需要的时候在停止。</p>
-<blockquote>
-<p>在/etc/systemd/system/目录下创建服务ngrok.service，内容为</p>
-</blockquote>
-</blockquote>
-<pre><code>[Unit]
-Description=ngrok
-After=network.target
-
-[Service]
-ExecStart=/myweb/ngrok/bin/ngrokd -tlsKey=/myweb/ngrok/server.key -tlsCrt=/myweb/ngrok/server.crt -domain=&quot;weixin.yangjiace.xyz&quot; -httpAddr=&quot;:80&quot; -httpsAddr=&quot;:443&quot;
-
-[Install]
-WantedBy=multi-user.target
-
-&gt;&gt;&gt;&gt;&gt;直接启动命令
-./bin/ngrokd -tlsKey=server.key -tlsCrt=server.crt -domain=&quot;www.guojiangliu.com&quot; -httpAddr=&quot;:80&quot; -httpsAddr=&quot;:443&quot;
-</code></pre><hr>
-<p>######客户端连接不上服务端问题</p>
-<blockquote>
-<p>ngrokd存在两种端口需要进行校验：</p>
-<ul>
-<li>http请求：由http-Addr指定</li>
-<li>ngrok客户端连接到服务器：这是用tunnelAddr指定的，默认情况下tunnel-Addr监听4443端口<blockquote>
-<p>需要将本地客户端的连接端口设置为4443</p>
-</blockquote>
-</li>
-</ul>
+<p>http请求：由http-Addr指定<br>ngrok客户端连接到服务器：这是用tunnelAddr指定的，默认情况下tunnel-Addr监听4443端口<br>需要将本地客户端的连接端口设置为4443</p>
 </blockquote>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/20/ngrok安装配置/" data-id="cjl2bmf2q0000qsffxh8vlevq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/20/ngrok安装配置/" data-id="cjl31epsy0000o4ffftgafgl1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/服务器/">服务器</a></li></ul>
